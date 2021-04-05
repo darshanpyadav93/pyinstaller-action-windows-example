@@ -40,10 +40,10 @@ jobs:
           pyinstaller --clean -y --dist $GITHUB_WORKSPACE/src/dist/macos --workpath /tmp $GITHUB_WORKSPACE/src/*.spec
       - name: ls
         run: |
-          ls $GITHUB_WORKSPACE/src/dist/
           ls $GITHUB_WORKSPACE/src/dist/macos
+          ls $GITHUB_WORKSPACE/src/dist/macos/main
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
-          path: $GITHUB_WORKSPACE/src/dist/macos
+          path: $GITHUB_WORKSPACE/src/dist/macos/main
 
