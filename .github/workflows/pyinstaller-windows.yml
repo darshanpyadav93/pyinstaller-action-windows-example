@@ -34,14 +34,14 @@ jobs:
           python-version: '3.7'
       - name: Install requirements
         run: |
-          pip install -r requirements.txt
+          pip install -r $GITHUB_WORKSPACE/requirements.txt
       - name: Run PyInstaller
         run: |
-          pyinstaller --clean -y --dist ./dist/macos --workpath /tmp *.spec
+          pyinstaller --clean -y --dist $GITHUB_WORKSPACE/dist/macos --workpath /tmp $GITHUB_WORKSPACE/*.spec
       - name: See dist directory
         run: ls dist
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
-          path: dist/macos
+          path: $GITHUB_WORKSPACE/dist/macos
 
