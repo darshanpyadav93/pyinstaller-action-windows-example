@@ -24,7 +24,7 @@ jobs:
         path: src/dist/windows # or path/to/artifact
         
   build-macos:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
