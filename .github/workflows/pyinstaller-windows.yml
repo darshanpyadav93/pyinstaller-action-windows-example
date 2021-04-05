@@ -7,21 +7,21 @@ on:
     branches: [ master ]
 
 jobs:
-  build-windows:
+#   build-windows:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: PyInstaller Windows
-      uses: JackMcKew/pyinstaller-action-windows@main
-      with:
-        path: src
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: PyInstaller Windows
+#       uses: JackMcKew/pyinstaller-action-windows@main
+#       with:
+#         path: src
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: windows-exe
-        path: src/dist/windows # or path/to/artifact
+#     - uses: actions/upload-artifact@v2
+#       with:
+#         name: windows-exe
+#         path: src/dist/windows # or path/to/artifact
         
   build-macos:
     runs-on: macOS-latest
@@ -38,6 +38,10 @@ jobs:
       - name: Run PyInstaller
         run: |
           pyinstaller --clean -y --dist $GITHUB_WORKSPACE/src/dist/macos --workpath /tmp $GITHUB_WORKSPACE/src/*.spec
+      - name: ls
+        run: |
+          ls $GITHUB_WORKSPACE/src/dist/
+          ls $GITHUB_WORKSPACE/src/dist/macos
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
