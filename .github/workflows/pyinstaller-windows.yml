@@ -37,13 +37,12 @@ jobs:
           pip install -r $GITHUB_WORKSPACE/src/requirements.txt
       - name: Run PyInstaller
         run: |
-          pyinstaller --clean -y --dist $GITHUB_WORKSPACE/src/dist/macos --workpath /tmp $GITHUB_WORKSPACE/src/*.spec
+          pyinstaller --onefile $GITHUB_WORKSPACE/src/*.spec
       - name: ls
         run: |
-          ls $GITHUB_WORKSPACE/src/dist/macos
-          ls $GITHUB_WORKSPACE/src/dist/macos/main
+          ls $GITHUB_WORKSPACE/src/dist
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
-          path: $GITHUB_WORKSPACE/src/dist/macos/main
+          path: $GITHUB_WORKSPACE/src/dist
 
