@@ -40,9 +40,9 @@ jobs:
           pyinstaller --onefile $GITHUB_WORKSPACE/src/*.spec
       - name: ls
         run: |
-          ls $GITHUB_WORKSPACE/dist/main
+          ls $GITHUB_WORKSPACE/dist/main/$GITHUB_WORKSPACE/dist/main
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
-          path: $GITHUB_WORKSPACE/dist/main/
+          path: $GITHUB_WORKSPACE/dist/main/$GITHUB_WORKSPACE/dist/main
 
