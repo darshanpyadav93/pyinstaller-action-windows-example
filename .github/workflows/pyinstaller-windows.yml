@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-windows:
 
     runs-on: ubuntu-latest
 
@@ -20,5 +20,28 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: my-exe
+        name: windows-exe
         path: src/dist/windows # or path/to/artifact
+        
+  build-macos:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+      - name: Run PyInstaller
+        run: |
+          pyinstaller --clean -y --dist ./dist/macos --workpath /tmp *.spec
+      - name: See dist directory
+        run: ls dist
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-exe
+          path: dist/macos
+
