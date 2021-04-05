@@ -27,22 +27,22 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
       - name: Install Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
       - name: Install requirements
         run: |
-          pip install -r $GITHUB_WORKSPACE/src/requirements.txt
+          pip install -r src/requirements.txt
       - name: Run PyInstaller
         run: |
-          pyinstaller --onefile $GITHUB_WORKSPACE/src/*.spec
+          pyinstaller --onefile src/*.spec
       - name: ls
         run: |
-          ls $GITHUB_WORKSPACE/dist/main/$GITHUB_WORKSPACE/dist/main
+          ls dist
       - uses: actions/upload-artifact@v2
         with:
           name: macos-exe
-          path: $GITHUB_WORKSPACE/dist/main/$GITHUB_WORKSPACE/dist/main
+          path: dist/main
 
